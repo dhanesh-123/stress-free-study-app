@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stress-Free Study App</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #c3ecf7, #f5f7fa);
+      transition: background-color 1s ease;
+      overflow-x: hidden;
+    }
+    .screen {
+      display: none;
+      width: 90%;
+      max-width: 500px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      flex-direction: column;
+    }
+    .screen h1, .screen h2 {
+      text-align: center;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background-color: #5bc65b;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+    .welcome-box {
+      position: relative;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 1s ease-out forwards;
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .welcome-box h1 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .welcome-box p {
+      font-size: 1.1rem;
+      color: #444;
+    }
+    iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+      border-radius: 8px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      background: #f9f9f9;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 6px;
+    }
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- All screens as before... -->
+
+  <script>
+    // All logic same, only this part is updated:
+    function updateMusicBasedOnMood() {
+      const mood = localStorage.getItem("mood");
+      const musicDiv = document.getElementById("musicByMood");
+
+      const musicContent = {
+        "Happy 😊": `
+          <h3>🎧 English</h3>
+          <iframe src="https://www.youtube.com/embed/OPf0YbXqDm0?rel=0" allowfullscreen></iframe>
+          <h3>🎼 Instrumental</h3>
+          <iframe src="https://www.youtube.com/embed/jfKfPfyJRdk?rel=0" allowfullscreen></iframe>
+        `,
+        "Okay 🙂": `
+          <h3>🎧 English</h3>
+          <iframe src="https://www.youtube.com/embed/kXYiU_JCYtU?rel=0" allowfullscreen></iframe>
+          <h3>🎼 Instrumental</h3>
+          <iframe src="https://www.youtube.com/embed/2OEL4P1Rz04?rel=0" allowfullscreen></iframe>
+        `,
+        "Stressed 😣": `
+          <h3>🎧 English</h3>
+          <iframe src="https://www.youtube.com/embed/YykjpeuMNEk?rel=0" allowfullscreen></iframe>
+          <h3>🎼 Instrumental</h3>
+          <iframe src="https://www.youtube.com/embed/DWcJFNfaw9c?rel=0" allowfullscreen></iframe>
+        `,
+        "Sad 😢": `
+          <h3>🎧 English</h3>
+          <iframe src="https://www.youtube.com/embed/hLQl3WQQoQ0?rel=0" allowfullscreen></iframe>
+          <h3>🎼 Instrumental</h3>
+          <iframe src="https://www.youtube.com/embed/lFcSrYw-ARY?rel=0" allowfullscreen></iframe>
+        `
+      };
+
+      musicDiv.innerHTML = musicContent[mood] || "<p>Please select your mood to see music suggestions.</p>";
+    }
+  </script>
+</body>
+</html>
